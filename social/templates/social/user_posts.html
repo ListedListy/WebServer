@@ -1,6 +1,6 @@
 {% extends 'social/base.html' %}
 
-{% block title %}{{ profile.name }} - WebServer Social{% endblock %}
+{% block title %}{{ profile.get_full_name|default:profile.username }} - WebServer Social{% endblock %}
 
 {% block content %}
 {% if profile %}
@@ -17,14 +17,7 @@
 
     <section class="post-list">
         {% for post in posts %}
-            <article class="post-card">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.body }}</p>
-                <footer class="post-meta">
-                    <span>{{ post.likes }} likes</span>
-                    <span>{{ post.comments.count }} comentarios</span>
-                </footer>
-            </article>
+            {% include 'social/_post_card.html' with show_author=False %}
         {% empty %}
             <p>Este utilizador ainda nao tem publicacoes.</p>
         {% endfor %}

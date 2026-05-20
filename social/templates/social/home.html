@@ -10,19 +10,7 @@
 
 <section class="post-list">
     {% for post in posts %}
-        <article class="post-card">
-            <div>
-                <a class="author" href="{% url 'social:user_posts' post.author.username %}">
-                    {{ post.author.get_full_name|default:post.author.username }}
-                </a>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.body }}</p>
-            </div>
-            <footer class="post-meta">
-                <span>{{ post.likes }} likes</span>
-                <span>{{ post.comments.count }} comentarios</span>
-            </footer>
-        </article>
+        {% include 'social/_post_card.html' with show_author=True %}
     {% endfor %}
 </section>
 {% endblock %}

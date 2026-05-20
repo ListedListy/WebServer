@@ -1,6 +1,6 @@
 :root {
     color-scheme: light;
-    --bg: #f4f7f6;
+    --bg: #eef4f2;
     --panel: #ffffff;
     --text: #1d2528;
     --muted: #5e6b70;
@@ -8,6 +8,7 @@
     --accent: #147c72;
     --accent-dark: #0e5f58;
     --warm: #c77a2b;
+    --soft: #e9f4f2;
 }
 
 * {
@@ -34,6 +35,7 @@ a:hover {
 .site-header {
     background: var(--panel);
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 8px rgba(29, 37, 40, 0.05);
 }
 
 .nav {
@@ -58,7 +60,7 @@ a:hover {
 .page {
     margin: 0 auto;
     max-width: 980px;
-    padding: 36px 20px;
+    padding: 40px 20px;
 }
 
 .page-heading,
@@ -88,7 +90,7 @@ p {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.15rem;
     margin-bottom: 8px;
 }
 
@@ -107,12 +109,18 @@ h2 {
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(29, 37, 40, 0.06);
     padding: 20px;
 }
 
 .post-card {
     display: grid;
-    gap: 14px;
+    gap: 16px;
+}
+
+.post-content p {
+    color: var(--muted);
+    margin-bottom: 0;
 }
 
 .author {
@@ -122,11 +130,78 @@ h2 {
 }
 
 .post-meta {
+    align-items: center;
     color: var(--muted);
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     font-size: 0.92rem;
+}
+
+.post-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+button,
+.like-button {
+    background: var(--accent);
+    border: 0;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 9px 13px;
+}
+
+button:hover,
+.like-button:hover {
+    background: var(--accent-dark);
+}
+
+.comments {
+    background: var(--soft);
+    border-radius: 8px;
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+}
+
+.comment {
+    display: grid;
+    gap: 2px;
+}
+
+.comment span,
+.empty-comments {
+    color: var(--muted);
+}
+
+.empty-comments {
+    margin: 0;
+}
+
+.comment-form {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(140px, 180px) 1fr auto;
+}
+
+.comment-form input {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--text);
+    font: inherit;
+    min-width: 0;
+    padding: 9px 11px;
+}
+
+.comment-form input:focus {
+    border-color: var(--accent);
+    outline: 2px solid rgba(20, 124, 114, 0.15);
 }
 
 .user-grid {
@@ -178,9 +253,19 @@ h2 {
 @media (max-width: 560px) {
     .nav,
     .profile-header,
-    .user-card {
+    .user-card,
+    .comment-form {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .comment-form {
+        display: flex;
+    }
+
+    .comment-form input,
+    .comment-form button {
+        width: 100%;
     }
 
     .nav-links {

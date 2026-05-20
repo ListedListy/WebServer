@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Post
+from .models import Comment, Post
 
 
 def home(request):
@@ -26,3 +26,24 @@ def user_posts(request, username):
             'posts': posts,
         },
     )
+
+
+def like_post(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=post_id)
+        post.likes += 1
+        post.save(update_fields=['likes'])
+
+    return redirect(request.POST.get('next') or 'social:home')
+
+
+def add_comment(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=post_id)
+        author_name = request.POST.get('author_name', '').strip()
+        body = request.POST.get('body', '').strip()
+
+        if author_name and body:
+            Comment.objects.create(post=post, author_name=author_name, body=body)
+
+    return redirect(request.POST.get('next') or 'social:home')

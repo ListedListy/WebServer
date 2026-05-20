@@ -4,9 +4,10 @@ from . import views
 
 app_name = 'social'
 
-urlpatterns = []
 urlpatterns = [
     path('', views.home, name='home'),
     path('utilizadores/', views.users, name='users'),
     path('utilizadores/<str:username>/', views.user_posts, name='user_posts'),
+    path('publicacoes/<int:post_id>/like/', views.like_post, name='like_post'),
+    path('publicacoes/<int:post_id>/comentar/', views.add_comment, name='add_comment'),
 ]

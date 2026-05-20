@@ -9,3 +9,4 @@ venv/
 
 staticfiles/
 .pytest_cache/
+*.log
