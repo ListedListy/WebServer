@@ -5,11 +5,13 @@
 {% block content %}
 {% if profile %}
     <section class="profile-header">
-        <div class="avatar large">{{ profile.name|first }}</div>
+        <div class="avatar large">
+            {% firstof profile.first_name|first profile.username|first %}
+        </div>
         <div>
             <p class="eyebrow">@{{ profile.username }}</p>
-            <h1>{{ profile.name }}</h1>
-            <p>{{ profile.bio }}</p>
+            <h1>{{ profile.get_full_name|default:profile.username }}</h1>
+            <p>{{ profile.profile.bio }}</p>
         </div>
     </section>
 
@@ -20,7 +22,7 @@
                 <p>{{ post.body }}</p>
                 <footer class="post-meta">
                     <span>{{ post.likes }} likes</span>
-                    <span>{{ post.comments }} comentarios</span>
+                    <span>{{ post.comments.count }} comentarios</span>
                 </footer>
             </article>
         {% empty %}

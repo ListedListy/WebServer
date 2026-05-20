@@ -11,11 +11,13 @@
 <section class="user-grid">
     {% for user in users %}
         <article class="user-card">
-            <div class="avatar">{{ user.name|first }}</div>
+            <div class="avatar">
+                {% firstof user.first_name|first user.username|first %}
+            </div>
             <div>
-                <h2>{{ user.name }}</h2>
+                <h2>{{ user.get_full_name|default:user.username }}</h2>
                 <p>@{{ user.username }}</p>
-                <p>{{ user.bio }}</p>
+                <p>{{ user.profile.bio }}</p>
                 <a class="button-link" href="{% url 'social:user_posts' user.username %}">
                     Ver publicacoes
                 </a>

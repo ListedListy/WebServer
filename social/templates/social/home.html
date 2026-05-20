@@ -13,14 +13,14 @@
         <article class="post-card">
             <div>
                 <a class="author" href="{% url 'social:user_posts' post.author.username %}">
-                    {{ post.author.name }}
+                    {{ post.author.get_full_name|default:post.author.username }}
                 </a>
                 <h2>{{ post.title }}</h2>
                 <p>{{ post.body }}</p>
             </div>
             <footer class="post-meta">
                 <span>{{ post.likes }} likes</span>
-                <span>{{ post.comments }} comentarios</span>
+                <span>{{ post.comments.count }} comentarios</span>
             </footer>
         </article>
     {% endfor %}
