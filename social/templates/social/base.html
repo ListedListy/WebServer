@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}WebServer Social{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'social/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="brand" href="{% url 'social:home' %}">WebServer Social</a>
+            <div class="nav-links">
+                <a href="{% url 'social:home' %}">Publicacoes</a>
+                <a href="{% url 'social:users' %}">Utilizadores</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

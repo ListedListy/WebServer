@@ -1,0 +1,26 @@
+{% extends 'social/base.html' %}
+
+{% block title %}Utilizadores - WebServer Social{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Comunidade</p>
+    <h1>Utilizadores</h1>
+</section>
+
+<section class="user-grid">
+    {% for user in users %}
+        <article class="user-card">
+            <div class="avatar">{{ user.name|first }}</div>
+            <div>
+                <h2>{{ user.name }}</h2>
+                <p>@{{ user.username }}</p>
+                <p>{{ user.bio }}</p>
+                <a class="button-link" href="{% url 'social:user_posts' user.username %}">
+                    Ver publicacoes
+                </a>
+            </div>
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}

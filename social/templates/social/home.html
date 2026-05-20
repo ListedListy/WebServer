@@ -1,0 +1,28 @@
+{% extends 'social/base.html' %}
+
+{% block title %}Publicacoes - WebServer Social{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Mural publico</p>
+    <h1>Publicacoes recentes</h1>
+</section>
+
+<section class="post-list">
+    {% for post in posts %}
+        <article class="post-card">
+            <div>
+                <a class="author" href="{% url 'social:user_posts' post.author.username %}">
+                    {{ post.author.name }}
+                </a>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.body }}</p>
+            </div>
+            <footer class="post-meta">
+                <span>{{ post.likes }} likes</span>
+                <span>{{ post.comments }} comentarios</span>
+            </footer>
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}

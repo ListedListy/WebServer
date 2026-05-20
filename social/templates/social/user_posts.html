@@ -1,0 +1,36 @@
+{% extends 'social/base.html' %}
+
+{% block title %}{{ profile.name }} - WebServer Social{% endblock %}
+
+{% block content %}
+{% if profile %}
+    <section class="profile-header">
+        <div class="avatar large">{{ profile.name|first }}</div>
+        <div>
+            <p class="eyebrow">@{{ profile.username }}</p>
+            <h1>{{ profile.name }}</h1>
+            <p>{{ profile.bio }}</p>
+        </div>
+    </section>
+
+    <section class="post-list">
+        {% for post in posts %}
+            <article class="post-card">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.body }}</p>
+                <footer class="post-meta">
+                    <span>{{ post.likes }} likes</span>
+                    <span>{{ post.comments }} comentarios</span>
+                </footer>
+            </article>
+        {% empty %}
+            <p>Este utilizador ainda nao tem publicacoes.</p>
+        {% endfor %}
+    </section>
+{% else %}
+    <section class="page-heading">
+        <h1>Utilizador nao encontrado</h1>
+        <p>O perfil pedido nao existe.</p>
+    </section>
+{% endif %}
+{% endblock %}
