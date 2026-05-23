@@ -1,16 +1,31 @@
 {% extends 'social/base.html' %}
 
-{% block title %}Publicacoes - WebServer Social{% endblock %}
+{% block title %}Inicio - WebServer Social{% endblock %}
 
 {% block content %}
-<section class="page-heading">
-    <p class="eyebrow">Mural publico</p>
-    <h1>Publicacoes recentes</h1>
-</section>
+<section class="entry-panel">
+    <div>
+        <p class="eyebrow">WebServer Social</p>
+        <h1>Entra no mural da turma</h1>
+        <p class="entry-copy">
+            Uma mini rede social feita em Django, com publicacoes, likes,
+            comentarios e dados guardados na base de dados.
+        </p>
+        <div class="entry-actions">
+            <a class="button-link primary" href="{% url 'social:posts' %}">Ver publicacoes</a>
+            <a class="button-link secondary" href="{% url 'social:users' %}">Ver utilizadores</a>
+        </div>
+    </div>
 
-<section class="post-list">
-    {% for post in posts %}
-        {% include 'social/_post_card.html' with show_author=True %}
-    {% endfor %}
+    <aside class="entry-stats" aria-label="Resumo da aplicacao">
+        <div>
+            <strong>{{ post_count }}</strong>
+            <span>publicacoes</span>
+        </div>
+        <div>
+            <strong>{{ user_count }}</strong>
+            <span>utilizadores</span>
+        </div>
+    </aside>
 </section>
 {% endblock %}

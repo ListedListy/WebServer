@@ -1,0 +1,16 @@
+{% extends 'social/base.html' %}
+
+{% block title %}Publicacoes - WebServer Social{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">Mural publico</p>
+    <h1>Publicacoes recentes</h1>
+</section>
+
+<section class="post-list">
+    {% for post in posts %}
+        {% include 'social/_post_card.html' with show_author=True %}
+    {% endfor %}
+</section>
+{% endblock %}

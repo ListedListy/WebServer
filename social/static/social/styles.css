@@ -68,6 +68,52 @@ a:hover {
     margin-bottom: 24px;
 }
 
+.entry-panel {
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 10px 28px rgba(29, 37, 40, 0.07);
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    padding: 34px;
+}
+
+.entry-copy {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 620px;
+}
+
+.entry-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.entry-stats {
+    background: var(--soft);
+    border-radius: 8px;
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.entry-stats div {
+    display: grid;
+    gap: 2px;
+}
+
+.entry-stats strong {
+    color: var(--accent-dark);
+    font-size: 2rem;
+}
+
+.entry-stats span {
+    color: var(--muted);
+}
+
 .profile-header {
     align-items: center;
     display: flex;
@@ -245,6 +291,16 @@ button:hover,
     padding: 8px 12px;
 }
 
+.button-link.secondary {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent-dark);
+}
+
+.button-link.secondary:hover {
+    background: var(--soft);
+}
+
 .button-link:hover {
     background: var(--accent-dark);
     text-decoration: none;
@@ -253,10 +309,16 @@ button:hover,
 @media (max-width: 560px) {
     .nav,
     .profile-header,
+    .entry-panel,
     .user-card,
     .comment-form {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .entry-panel {
+        display: flex;
+        padding: 24px;
     }
 
     .comment-form {

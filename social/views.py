@@ -5,8 +5,21 @@ from .models import Comment, Post
 
 
 def home(request):
+    post_count = Post.objects.count()
+    user_count = User.objects.filter(posts__isnull=False).distinct().count()
+    return render(
+        request,
+        'social/home.html',
+        {
+            'post_count': post_count,
+            'user_count': user_count,
+        },
+    )
+
+
+def posts(request):
     posts = Post.objects.select_related('author', 'author__profile').prefetch_related('comments')
-    return render(request, 'social/home.html', {'posts': posts})
+    return render(request, 'social/posts.html', {'posts': posts})
 
 
 def users(request):
@@ -34,7 +47,7 @@ def like_post(request, post_id):
         post.likes += 1
         post.save(update_fields=['likes'])
 
-    return redirect(request.POST.get('next') or 'social:home')
+    return redirect(request.POST.get('next') or 'social:posts')
 
 
 def add_comment(request, post_id):
@@ -46,4 +59,4 @@ def add_comment(request, post_id):
         if author_name and body:
             Comment.objects.create(post=post, author_name=author_name, body=body)
 
-    return redirect(request.POST.get('next') or 'social:home')
+    return redirect(request.POST.get('next') or 'social:posts')
