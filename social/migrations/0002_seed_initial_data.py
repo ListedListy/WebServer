@@ -12,13 +12,13 @@ def create_initial_data(apps, schema_editor):
             'username': 'nathan',
             'first_name': 'Nathan',
             'last_name': 'Santos',
-            'bio': 'Aluno de administracao de sistemas e desenvolvimento web.',
+            'bio': 'Aluno de Cybersecurity.',
         },
         {
-            'username': 'maria',
-            'first_name': 'Maria',
-            'last_name': 'Costa',
-            'bio': 'Gosta de bases de dados, Linux e cafe forte.',
+            'username': 'marcio',
+            'first_name': 'Marcio',
+            'last_name': 'Araujo',
+            'bio': 'Aluno de Cybersecurity.',
         },
     ]
 
@@ -44,7 +44,7 @@ def create_initial_data(apps, schema_editor):
             'comments': ['Bom inicio!', 'A estrutura esta clara.'],
         },
         {
-            'author': 'maria',
+            'author': 'marcio',
             'title': 'Docker Compose simplifica tudo',
             'body': 'Um ficheiro bem organizado ajuda a levantar a app e a base de dados rapidamente.',
             'likes': 12,
@@ -75,7 +75,7 @@ def create_initial_data(apps, schema_editor):
 
 def delete_initial_data(apps, schema_editor):
     User = apps.get_model('auth', 'User')
-    User.objects.filter(username__in=['nathan', 'maria']).delete()
+    User.objects.filter(username__in=['nathan', 'marcio']).delete()
 
 
 class Migration(migrations.Migration):
